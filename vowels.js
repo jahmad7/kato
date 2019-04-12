@@ -11,6 +11,7 @@ let numberOfVowels = function(data) {
   return sum;
 };
 
+
 console.log(numberOfVowels("orange"));
 console.log(numberOfVowels("lighthouse labs"));
 console.log(numberOfVowels("aeiou"));
