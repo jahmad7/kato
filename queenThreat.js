@@ -15,33 +15,21 @@ function generateBoard(whiteQueen, blackQueen){
 	return board;
 }
 
-function queenThreat(generatedBoard) {
-
-	var rowSums = [];
-	var colSums = [];
-	var diaSums = [];
-	var size = generatedBoard.length;
-	
-	//create arrays with sums of each row or col
-	for (var i = 0; i < size; i++) {
-		rowSums.push(0);
-		colSums.push(0);
-		for (var j = 0; j < size; j++) {
-			rowSums[i] += generatedBoard[i][j];
-			colSums[i] += generatedBoard[j][i];
-		}
+function queenThreat(whiteQueen, blackQueen) {
+	//if both queens are on the same row
+	if (whiteQueen[0] == blackQueen[0]){
+		return true;
 	}
-
-	var threat = false;
-
-	//find rows that have rows or columns that have both queens
-	for (var i = 0; i < size; i++) {
-		if ( rowSums[i] > 1 || colSums > 1) {
-			threat = true;
-		}
+	//if both queens are on the same column
+	else if (whiteQueen[1] == blackQueen[1]) {
+		return true;
 	}
-
-	return threat;
+	//if both queens are dialognal to one another thus have the same distance to each other in terms of row and column
+	else if (Math.abs(whiteQueen[0] - blackQueen[0]) == Math.abs(whiteQueen[1] - blackQueen[1])) {
+		return true
+	}
+	//otherwise they are not in attack postion
+	else { return false; }
 }
 
 
@@ -50,7 +38,9 @@ function queenThreat(generatedBoard) {
 
 
 let whiteQueen = [0, 5];
-let blackQueen = [5, 0];
+let blackQueen = [6, 5];
 let generatedBoard = generateBoard(whiteQueen, blackQueen);
 console.log(generatedBoard);
-console.log(queenThreat(generatedBoard));
+//the logic of using the generatedBoard is redundent to find the locations of queens again on the generated board, the cost of using mathimatical models is much lower.
+//console.log(queenThreat(generatedBoard));
+console.log(queenThreat(whiteQueen, blackQueen));

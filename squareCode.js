@@ -1,24 +1,51 @@
 const squareCode = function(message) {
-  // Put your solution here
-  var words = [];
-  var result = "";
-  wordNum = 0;
+  var squareValue = 0;
+  var wordString = "";
 
-  //break string into each word as a index on the words array
+  //create a string of the message without the spaces
   for (var i = 0; i < message.length; i++) {
-  	if (message[i] !== " ") {
-  		result = result + message[i];
-  	}else {
-  		words[wordNum] = result;
-  		wordNum++
-  		result = ""; 
+  	if (message[i] != " ") {
+  		wordString = wordString + message[i];
   	}
   }
 
-  return words;
+  squareValue = Math.ceil(Math.sqrt(wordString.length));
+
+  var wordMatrix = [];
+
+  for (var i = 0; i < squareValue; i++) {
+  	wordMatrix.push([]);
+  	for (var j = 0; j < squareValue; j++) {
+  		wordMatrix[i].push("");
+  	}
+  }
 
 
-};
+
+  var index = 0;
+
+  for (var row = 0; row < squareValue; row++) {
+  	for (var col = 0; col < squareValue; col++) {
+  		wordMatrix[row][col] = wordString[index];
+  		index++
+  	}
+  }
+
+  var finalString = "";
+
+  for (var col = 0; col < squareValue; col++) {
+  	for (var row = 0; row < squareValue; row++) {
+  		//remove empty array values from final string
+  		if (wordMatrix[row][col] != undefined) {
+  			finalString += wordMatrix[row][col];
+  		}
+  	}
+  	finalString += " ";
+  }
+
+  return finalString;
+
+}
 
 console.log(squareCode("chill out"));
 console.log(squareCode("feed the dog"));
