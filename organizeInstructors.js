@@ -1,4 +1,4 @@
-const organizeInstructors = function(instructors) {
+bconst organizeInstructors = function(instructors) {
   // create courses array with all values 
   var courses = [];
   for (var i = 0; i < instructors.length; i++) {
